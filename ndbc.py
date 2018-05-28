@@ -12,7 +12,7 @@ class Ndbc:
     # https://sdf.ndbc.noaa.gov/sos/
     # for proper formatting.
     def __init__(self, query):
-        r = requests.get(url, params=query)
+        r = requests.get(self.url, params=query)
 
         if r.status_code == requests.codes.ok:
             self._raw_data = r.text
@@ -25,7 +25,7 @@ class Ndbc:
         entries = self._raw_data.splitlines()
         fieldnames = entries[:1][0].split(',')
 
-        fieldnames = [field[1:-1] if string.startswith('"') and string.endswith('"') else field for field in fieldnames]
+        fieldnames = [field[1:-1] if field.startswith('"') and field.endswith('"') else field for field in fieldnames]
 
         data_pydict = []
         for entry in entries[1:]:
