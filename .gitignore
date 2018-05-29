@@ -1,2 +1,6 @@
 # Should not publicize API keys
 .api_keys.json
+
+# Any caches should be ignored also
+__pycache__
+__pycache__/*
