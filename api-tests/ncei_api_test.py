@@ -5,7 +5,7 @@ import json
 
 # You don't get to see my API key
 def get_ncei_api_key():
-    with open('.api_keys.json') as f:
+    with open('../.api_keys.json') as f:
         return json.load(f)['NCEI']
 
 header = {'token' : get_ncei_api_key()}
